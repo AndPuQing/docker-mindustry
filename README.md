@@ -1,9 +1,8 @@
 <!-- Badges -->
-<!-- ![Docker Pulls](https://img.shields.io/docker/pulls/mercxry/mindustry) -->
-![Docker Image Size (stable)](https://img.shields.io/docker/image-size/mercxry/mindustry/stable?label=img%20size%20%28stable%29&logo=docker)
-![Docker Image Size (latest)](https://img.shields.io/docker/image-size/mercxry/mindustry/latest?label=img%20size%20%28latest%29&logo=docker)
+<!-- ![Docker Pulls](https://img.shields.io/docker/pulls/anderpuqing/mindustry) -->
+![Docker Image Size (latest)](https://img.shields.io/docker/image-size/anderpuqing/mindustry/latest?label=img%20size%20%28latest%29&logo=docker)
 
-![Mindustry logo](https://raw.githubusercontent.com/mercxry/docker-mindustry/main/assets/mindustry-logo.png)
+![Mindustry logo](https://raw.githubusercontent.com/anderpuqing/docker-mindustry/main/assets/mindustry-logo.png)
 
 Mindustry is a hybrid tower-defense sandbox factory game. Create elaborate supply chains of conveyor belts to feed ammo into your turrets, produce materials to use for building, and defend your structures from waves of enemies.
 
@@ -17,22 +16,21 @@ docker run -it -d \
   -p 6567:6567/tcp -p 6567:6567/udp \
   -v /path/to/config:/mindustry/config \
   --restart unless-stopped \
-  mercxry/mindustry:stable
+  anderpuqing/mindustry:latest
 ```
 
 ### Docker compose (recommended)
 
 ```yaml
----
 version: "3.8"
 services:
   mindustry:
-    image: mercxry/mindustry:stable
+    image: anderpuqing/mindustry:latest
     container_name: mindustry
     stdin_open: true
     tty: true
     volumes:
-      - /path/to/config:/config
+      - /path/to/config:/mindustry/config
     ports:
       - 6567:6567/tcp
       - 6567:6567/udp
