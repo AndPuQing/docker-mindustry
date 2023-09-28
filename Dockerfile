@@ -5,7 +5,7 @@ ARG VERSION
 ENV SERVER_PATH=/mindustry
 
 RUN mkdir -p ${SERVER_PATH} && \
-    apk add --no-cache openjdk16 && \
+    apk add --no-cache openjdk16-jre && \
     wget -q https://github.com/Anuken/Mindustry/releases/download/${VERSION}/server-release.jar -O ${SERVER_PATH}/server-release.jar
 
 VOLUME ${SERVER_PATH}/config

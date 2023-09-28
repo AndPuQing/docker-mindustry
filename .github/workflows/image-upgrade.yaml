@@ -18,5 +18,5 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build image and push
+      - name: Build image and Push
         run: ./scripts/build-and-push.sh latest
