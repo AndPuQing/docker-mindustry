@@ -20,6 +20,8 @@ jobs:
 
       - name: Build image and push
         run: ./scripts/build-and-push.sh stable
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Build image and push
         run: ./scripts/build-and-push.sh latest

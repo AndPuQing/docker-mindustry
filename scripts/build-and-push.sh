@@ -7,25 +7,9 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-# Get latest stable version
-if [ "$1" = "stable" ]; then
-    GH_STABLE_RELEASE=$(gh api -H "Accept: application/vnd.github+json" /repos/Anuken/Mindustry/releases/latest | jq '.assets[1].browser_download_url')
-    PREFIX="\"https://github.com/Anuken/Mindustry/releases/download/"
-    SUFFIX="/server-release.jar\""
-    VERSION=${GH_STABLE_RELEASE#"$PREFIX"}
-    VERSION=${VERSION%"$SUFFIX"}
-    VERSION_TYPE="stable"
-
-    echo "Found latest stable version: \"$VERSION\""
-fi
-
 # Get latest beta version
 if [ "$1" = "latest" ] || [ "$1" = "beta" ]; then
-    GH_BETA_RELEASE=$(gh api -H "Accept: application/vnd.github+json" /repos/Anuken/Mindustry/releases | jq '.[0].assets[1].browser_download_url')
-    PREFIX="\"https://github.com/Anuken/Mindustry/releases/download/"
-    SUFFIX="/server-release.jar\""
-    VERSION=${GH_BETA_RELEASE#"$PREFIX"}
-    VERSION=${VERSION%"$SUFFIX"}
+    TAG=$(wget -qO- -t1 -T2 "https://api.github.com/repos/Anuken/Mindustry/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
     VERSION_TYPE="latest"
 
     echo "Found latest beta version: \"$VERSION\""
