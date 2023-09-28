@@ -13,17 +13,10 @@ if [ "$1" = "latest" ] || [ "$1" = "beta" ]; then
     echo "Found latest beta version: \"$TAG\""
 fi
 
-# Check if version exists
-wget --no-cache --spider https://github.com/Anuken/Mindustry/releases/download/$TAG/server-release.jar &> /dev/null
-if [ $? -ne 0 ]; then
-    echo "Error: version \"$VERSION\" not found"
-    exit 1
-fi
-
 # Build command
 START_CMD="docker build"
 PUSH_ARG="--push"
-PLATFORM_ARG="--platform linux/arm/v7,linux/arm64/v8,linux/amd64"
+PLATFORM_ARG="--platform linux/amd64"
 DOCKER_VERSION_TAG_ARG="-t anderpuqing/mindustry:$TAG"
 END_CMD="--build-arg "VERSION"="$VERSION" ."
 
