@@ -2,7 +2,7 @@
 <!-- ![Docker Pulls](https://img.shields.io/docker/pulls/anderpuqing/mindustry) -->
 ![Docker Image Size (latest)](https://img.shields.io/docker/image-size/anderpuqing/mindustry/latest?label=img%20size%20%28latest%29&logo=docker)
 
-![Mindustry logo](https://raw.githubusercontent.com/anderpuqing/docker-mindustry/main/assets/mindustry-logo.png)
+![Mindustry logo](https://raw.githubusercontent.com/AndPuQing/docker-mindustry/main/assets/mindustry-logo.png)
 
 Mindustry is a hybrid tower-defense sandbox factory game. Create elaborate supply chains of conveyor belts to feed ammo into your turrets, produce materials to use for building, and defend your structures from waves of enemies.
 
