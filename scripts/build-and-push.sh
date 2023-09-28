@@ -12,11 +12,11 @@ if [ "$1" = "latest" ] || [ "$1" = "beta" ]; then
     TAG=$(wget -qO- -t1 -T2 "https://api.github.com/repos/Anuken/Mindustry/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
     VERSION_TYPE="latest"
 
-    echo "Found latest beta version: \"$VERSION\""
+    echo "Found latest beta version: \"$TAG\""
 fi
 
 # Check if version exists
-wget --no-cache --spider https://github.com/Anuken/Mindustry/releases/download/$VERSION/server-release.jar &> /dev/null
+wget --no-cache --spider https://github.com/Anuken/Mindustry/releases/download/$TAG/server-release.jar &> /dev/null
 if [ $? -ne 0 ]; then
     echo "Error: version \"$VERSION\" not found"
     exit 1
@@ -26,9 +26,9 @@ fi
 START_CMD="docker buildx build"
 PUSH_ARG="--push"
 PLATFORM_ARG="--platform linux/arm/v7,linux/arm64/v8,linux/amd64"
-DOCKER_VERSION_TAG_ARG="-t anderpuqing/mindustry:$VERSION"
+DOCKER_VERSION_TAG_ARG="-t anderpuqing/mindustry:$TAG"
 DOCKER_VERSION_TYPE_TAG_ARG="-t anderpuqing/mindustry:$VERSION_TYPE"
-GITHUB_VERSION_TAG_ARG="-t ghcr.io/anderpuqing/mindustry:$VERSION"
+GITHUB_VERSION_TAG_ARG="-t ghcr.io/anderpuqing/mindustry:$TAG"
 GITHUB_VERSION_TYPE_TAG_ARG="-t ghcr.io/anderpuqing/mindustry:$VERSION_TYPE"
 END_CMD="--build-arg "VERSION"="$VERSION" ."
 
