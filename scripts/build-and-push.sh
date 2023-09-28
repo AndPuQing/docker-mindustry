@@ -1,7 +1,5 @@
 #!/bin/sh
 
-VERSION=$1
-
 if [ -z "$1" ]; then
     echo "Usage: $0 <version>"
     exit 1
@@ -23,20 +21,13 @@ if [ $? -ne 0 ]; then
 fi
 
 # Build command
-START_CMD="docker buildx build"
+START_CMD="docker build"
 PUSH_ARG="--push"
 PLATFORM_ARG="--platform linux/arm/v7,linux/arm64/v8,linux/amd64"
 DOCKER_VERSION_TAG_ARG="-t anderpuqing/mindustry:$TAG"
-DOCKER_VERSION_TYPE_TAG_ARG="-t anderpuqing/mindustry:$VERSION_TYPE"
-GITHUB_VERSION_TAG_ARG="-t ghcr.io/anderpuqing/mindustry:$TAG"
-GITHUB_VERSION_TYPE_TAG_ARG="-t ghcr.io/anderpuqing/mindustry:$VERSION_TYPE"
 END_CMD="--build-arg "VERSION"="$VERSION" ."
 
-CMD="$START_CMD $PUSH_ARG $PLATFORM_ARG $DOCKER_VERSION_TAG_ARG $GITHUB_VERSION_TAG_ARG"
-
-if [ ! -z "$VERSION_TYPE" ]; then
-    CMD="$CMD $DOCKER_VERSION_TYPE_TAG_ARG $GITHUB_VERSION_TYPE_TAG_ARG"
-fi
+CMD="$START_CMD $PUSH_ARG $PLATFORM_ARG $DOCKER_VERSION_TAG_ARG"
 
 CMD="$CMD $END_CMD"
 
