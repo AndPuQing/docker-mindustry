@@ -18,7 +18,7 @@ START_CMD="docker build"
 PUSH_ARG="--push"
 PLATFORM_ARG="--platform linux/amd64"
 DOCKER_VERSION_TAG_ARG="-t anderpuqing/mindustry:$TAG"
-END_CMD="--build-arg "VERSION"="$VERSION" ."
+END_CMD="--build-arg "VERSION"="$TAG" ."
 
 CMD="$START_CMD $PUSH_ARG $PLATFORM_ARG $DOCKER_VERSION_TAG_ARG"
 
