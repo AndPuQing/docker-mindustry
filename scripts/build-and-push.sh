@@ -14,9 +14,9 @@ if [ "$1" = "latest" ] || [ "$1" = "beta" ]; then
 fi
 
 # Build command
-START_CMD="docker build"
+START_CMD="docker buildx build"
 PUSH_ARG="--push"
-PLATFORM_ARG="--platform linux/amd64"
+PLATFORM_ARG="--platform linux/amd64,linux/arm64,linux/arm/v7"
 DOCKER_VERSION_TAG_ARG="-t anderpuqing/mindustry:$TAG"
 DOCKER_VERSION_TAG_ARG="$DOCKER_VERSION_TAG_ARG -t anderpuqing/mindustry:$VERSION_TYPE"
 END_CMD="--build-arg "VERSION"="$TAG" ."
