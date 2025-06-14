@@ -17,21 +17,14 @@ LABEL maintainer="AndPuQing <me@puqing.work>" \
       org.opencontainers.image.description="Mindustry dedicated server"
 
 ENV SERVER_PATH=/mindustry
-ENV USER=mindustry
-ENV UID=1001
-ENV GID=1001
 
 RUN apk add --no-cache openjdk11-jre && \
-    addgroup -g ${GID} ${USER} && \
-    adduser -u ${UID} -G ${USER} -h ${SERVER_PATH} -D ${USER} && \
-    mkdir -p ${SERVER_PATH}/config && \
-    chown -R ${USER}:${USER} ${SERVER_PATH}
+    mkdir -p ${SERVER_PATH}/config &&
 
 WORKDIR ${SERVER_PATH}
-COPY --from=builder --chown=${USER}:${USER} ${SERVER_PATH}/server-release.jar .
+COPY --from=builder ${SERVER_PATH}/server-release.jar .
 VOLUME ${SERVER_PATH}/config
 
-USER ${USER}
 EXPOSE 6567/tcp 6567/udp
 
 ENTRYPOINT ["/usr/bin/java", "-jar", "server-release.jar"]
