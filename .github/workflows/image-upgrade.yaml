@@ -22,5 +22,8 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build image and Push
+      - name: Build image and Push Latest
         run: ./scripts/build-and-push.sh latest
+
+      - name: Build image and Push Beta
+        run: ./scripts/build-and-push.sh beta
