@@ -19,7 +19,7 @@ LABEL maintainer="AndPuQing <me@puqing.work>" \
 ENV SERVER_PATH=/mindustry
 
 RUN apk add --no-cache openjdk11-jre && \
-    mkdir -p ${SERVER_PATH}/config &&
+    mkdir -p ${SERVER_PATH}/config
 
 WORKDIR ${SERVER_PATH}
 COPY --from=builder ${SERVER_PATH}/server-release.jar .
