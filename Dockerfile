@@ -1,4 +1,4 @@
-FROM alpine:3.22 AS builder
+FROM alpine:3.24 AS builder
 
 
 ARG VERSION
@@ -8,7 +8,7 @@ ENV SERVER_PATH=/mindustry
 WORKDIR ${SERVER_PATH}
 RUN wget -q https://github.com/Anuken/Mindustry/releases/download/${VERSION}/server-release.jar
 
-FROM alpine:3.22.0
+FROM alpine:3.24.1
 
 ARG VERSION
 LABEL maintainer="AndPuQing <me@puqing.work>" \
